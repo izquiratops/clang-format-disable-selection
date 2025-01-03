@@ -1,0 +1,44 @@
+{
+	"name": "clang-format-ignore",
+	"displayName": "Clang-format ignore",
+	"description": "Wrap code with clang-format ignore",
+	"version": "0.0.1",
+	"publisher": "izquiratops",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/izquiratops/clang-format-ignore"
+	},
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "clang-format-ignore.toggleWrap",
+				"title": "Toggle Clang-Format Ignore"
+			}
+		]
+	},
+	"dependencies": {
+		"@types/vscode": "^1.96.0",
+		"@vscode/vsce": "^3.2.1",
+		"esbuild": "^0.24.2"
+	},
+	"scripts": {
+		"build": "node build.js",
+		"package": "vsce package"
+	},
+	"keywords": [
+		"vscode",
+		"extension",
+		"clang",
+		"clang-format"
+	],
+	"author": "Jordi Izquierdo <jordi.izquierdo.casares@gmail.com>",
+	"license": "ISC"
+}
