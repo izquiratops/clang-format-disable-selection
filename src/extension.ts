@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
   let disposable = vscode.commands.registerCommand(
-    'clang-format-ignore.toggleWrap', 
+    'clang-format-disable-selection.toggleWrap', 
     () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) return;

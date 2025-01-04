@@ -1,12 +1,12 @@
 {
-	"name": "clang-format-ignore",
-	"displayName": "Clang-format ignore",
-	"description": "Wrap code with clang-format ignore",
-	"version": "0.0.1",
+	"name": "clang-format-disable-selection",
+	"displayName": "Clang-format disable selection",
+	"description": "Wrap code with clang-format disable comments",
+	"version": "0.0.2",
 	"publisher": "izquiratops",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/izquiratops/clang-format-ignore"
+		"url": "https://github.com/izquiratops/clang-format-disable-selection"
 	},
 	"engines": {
 		"vscode": "^1.74.0"
@@ -19,8 +19,8 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "clang-format-ignore.toggleWrap",
-				"title": "Toggle Clang-Format Ignore"
+				"command": "clang-format-disable-selection.toggleWrap",
+				"title": "Toggle clang-format in current selection"
 			}
 		]
 	},
@@ -31,7 +31,8 @@
 	},
 	"scripts": {
 		"build": "node build.js",
-		"package": "vsce package"
+		"package": "vsce package",
+		"publish": "vsce publish"
 	},
 	"keywords": [
 		"vscode",
