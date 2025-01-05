@@ -9,7 +9,7 @@
 		"url": "https://github.com/izquiratops/clang-format-disable-selection"
 	},
 	"engines": {
-		"vscode": "^1.74.0"
+		"vscode": "^1.96.0"
 	},
 	"categories": [
 		"Other"
@@ -24,15 +24,9 @@
 			}
 		]
 	},
-	"dependencies": {
-		"@types/vscode": "^1.96.0",
-		"@vscode/vsce": "^3.2.1",
-		"esbuild": "^0.24.2"
-	},
 	"scripts": {
 		"build": "node build.js",
-		"package": "vsce package",
-		"publish": "vsce publish"
+		"package": "npx vsce package"
 	},
 	"keywords": [
 		"vscode",
@@ -41,5 +35,11 @@
 		"clang-format"
 	],
 	"author": "Jordi Izquierdo <jordi.izquierdo.casares@gmail.com>",
-	"license": "ISC"
+	"license": "ISC",
+	"devDependencies": {
+		"@types/vscode": "^1.96.0",
+		"@vscode/vsce": "^3.2.1",
+		"esbuild": "^0.24.2",
+		"ovsx": "^0.10.1"
+	}
 }

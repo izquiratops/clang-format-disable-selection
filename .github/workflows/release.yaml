@@ -1,0 +1,70 @@
+name: Release Extension
+
+on:
+  release:
+    types:
+      - created
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build and Release Extension
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate SemVer Tag
+        run: |
+          # Make the script executable
+          chmod +x scripts/validate-semver.sh
+          
+          # Run the validation script with the tag
+          ./scripts/validate-semver.sh ${{ github.event.release.tag_name }}
+
+      - name: Setup Git
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify PAT
+        run: npx vsce verify-pat
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Update version and commit
+        run: |
+          # Fetch all branches
+          git fetch origin
+          
+          # Checkout to master branch
+          git checkout -b master origin/master
+
+          # Actualizar la versión y crear commit
+          npm version ${{ github.event.release.tag_name }} --no-git-tag-version
+          git add package.json
+          git commit -m "Update package version to ${{ github.event.release.tag_name }}"
+          git push
+
+      - name: Compile extension
+        run: npm run build
+
+      - name: Publish to VS Code Marketplace
+        run: npx vsce publish
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish to Open VSX Registry
+        run: npx ovsx publish
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
