@@ -24,15 +24,11 @@
 			}
 		]
 	},
-	"dependencies": {
-		"@types/vscode": "^1.96.0",
-		"@vscode/vsce": "^3.2.1",
-		"esbuild": "^0.24.2"
-	},
 	"scripts": {
 		"build": "node build.js",
-		"package": "vsce package",
-		"publish": "vsce publish"
+		"package": "npx vsce package",
+		"vsce:deploy": "npx vsce deploy",
+		"ovsx:deploy": "npx ovsx deploy"
 	},
 	"keywords": [
 		"vscode",
@@ -41,5 +37,11 @@
 		"clang-format"
 	],
 	"author": "Jordi Izquierdo <jordi.izquierdo.casares@gmail.com>",
-	"license": "ISC"
+	"license": "ISC",
+	"devDependencies": {
+		"@types/vscode": "^1.96.0",
+		"@vscode/vsce": "^3.2.1",
+		"esbuild": "^0.24.2",
+		"ovsx": "^0.10.1"
+	}
 }
