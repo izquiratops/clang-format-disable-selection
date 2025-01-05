@@ -27,8 +27,8 @@
 	"scripts": {
 		"build": "node build.js",
 		"package": "npx vsce package",
-		"vsce:deploy": "npx vsce deploy",
-		"ovsx:deploy": "npx ovsx deploy"
+		"vsce:publish": "npx vsce publish",
+		"ovsx:publish": "npx ovsx publish"
 	},
 	"keywords": [
 		"vscode",

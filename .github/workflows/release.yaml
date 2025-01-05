@@ -35,12 +35,12 @@ jobs:
       - name: Compile extension
         run: npm run build
 
-      - name: Deploy to VS Code Marketplace
-        run: npm run vsce:deploy ${{ github.event.release.tag_name }}
+      - name: Publish to VS Code Marketplace
+        run: npm run vsce:publish ${{ github.event.release.tag_name }}
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
-      - name: Deploy to Open VSX Registry
-        run: npm run ovsx:deploy ${{ github.event.release.tag_name }}
+      - name: Publish to Open VSX Registry
+        run: npm run ovsx:publish ${{ github.event.release.tag_name }}
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
