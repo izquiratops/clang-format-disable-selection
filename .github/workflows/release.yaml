@@ -16,6 +16,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Validate SemVer Tag
+        run: |
+          # Make the script executable
+          chmod +x scripts/validate-semver.sh
+          
+          # Run the validation script with the tag
+          ./scripts/validate-semver.sh "${GITHUB_REF#refs/tags/}"
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,11 +36,11 @@ jobs:
         run: npm run build
 
       - name: Deploy to VS Code Marketplace
-        run: npm run vscode:deploy ${{ github.event.release.tag_name }}
+        run: npm run vscode:deploy ${{ GITHUB_REF#refs/tags/ }}
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
       - name: Deploy to Open VSX Registry
-        run: npm run ovsx:deploy ${{ github.event.release.tag_name }}
+        run: npm run ovsx:deploy ${{ GITHUB_REF#refs/tags/ }}
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
