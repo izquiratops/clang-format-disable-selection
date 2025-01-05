@@ -2,7 +2,7 @@
 	"name": "clang-format-disable-selection",
 	"displayName": "Clang-format disable selection",
 	"description": "Wrap code with clang-format disable comments",
-	"version": "0.0.2",
+	"version": "0.1.0",
 	"publisher": "izquiratops",
 	"repository": {
 		"type": "git",
