@@ -44,6 +44,13 @@ jobs:
 
       - name: Update version and commit
         run: |
+          # Fetch all branches
+          git fetch origin
+          
+          # Checkout to master branch
+          git checkout -b master origin/master
+
+          # Actualizar la versión y crear commit
           npm version ${{ github.event.release.tag_name }} --no-git-tag-version
           git add package.json
           git commit -m "Update package version to ${{ github.event.release.tag_name }}"
@@ -53,11 +60,11 @@ jobs:
         run: npm run build
 
       - name: Publish to VS Code Marketplace
-        run: npx vsce publish ${{ github.event.release.tag_name }}
+        run: npx vsce publish
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
       - name: Publish to Open VSX Registry
-        run: npx ovsx publish ${{ github.event.release.tag_name }}
+        run: npx ovsx publish
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
