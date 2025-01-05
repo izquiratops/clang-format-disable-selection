@@ -1,4 +1,4 @@
-name: Build Release Extension
+name: Release Extension
 
 on:
   release:
@@ -10,24 +10,29 @@ permissions:
 
 jobs:
   build:
-    name: Build Release Extension
+    name: Build and Release Extension
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-      # Running compile step here instead of vscode:prepublish to avoid running it twice.
       - name: Compile extension
         run: npm run build
 
-      - run: npm run vscode:deploy ${{ github.event.release.tag_name }}
+      - name: Deploy to VS Code Marketplace
+        run: npm run vscode:deploy ${{ github.event.release.tag_name }}
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
-      - run: npm run ovsx:deploy ${{ github.event.release.tag_name }}
+      - name: Deploy to Open VSX Registry
+        run: npm run ovsx:deploy ${{ github.event.release.tag_name }}
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
