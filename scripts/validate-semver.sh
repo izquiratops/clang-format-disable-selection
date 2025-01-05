@@ -5,7 +5,7 @@ validate_semver() {
     local semver_regex="^v?([0-9]+)\.([0-9]+)\.([0-9]+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$"
     
     if [[ ! "$tag" =~ $semver_regex ]]; then
-        echo "Error: Tag '$tag' does not follow SemVer format"
+        echo "🤬 Error: Tag '${tag}' does not follow SemVer format"
         echo "Valid formats include:"
         echo "- 1.2.3"
         echo "- v1.2.3"
@@ -14,6 +14,8 @@ validate_semver() {
         echo "- 1.2.3+build.123"
         return 1
     fi
+
+    echo "💚 Tag '${tag}' is a valid SemVer"
     return 0
 }
 

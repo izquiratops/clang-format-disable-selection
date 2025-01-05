@@ -9,7 +9,7 @@
 		"url": "https://github.com/izquiratops/clang-format-disable-selection"
 	},
 	"engines": {
-		"vscode": "^1.74.0"
+		"vscode": "^1.96.0"
 	},
 	"categories": [
 		"Other"
@@ -26,9 +26,7 @@
 	},
 	"scripts": {
 		"build": "node build.js",
-		"package": "npx vsce package",
-		"vsce:publish": "npx vsce publish",
-		"ovsx:publish": "npx ovsx publish"
+		"package": "npx vsce package"
 	},
 	"keywords": [
 		"vscode",

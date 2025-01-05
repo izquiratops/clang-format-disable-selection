@@ -32,15 +32,20 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify PAT
+        run: npx vsce verify-pat
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
       - name: Compile extension
         run: npm run build
 
       - name: Publish to VS Code Marketplace
-        run: npm run vsce:publish ${{ github.event.release.tag_name }}
+        run: npx vsce publish ${{ github.event.release.tag_name }}
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
       - name: Publish to Open VSX Registry
-        run: npm run ovsx:publish ${{ github.event.release.tag_name }}
+        run: npx ovsx publish ${{ github.event.release.tag_name }}
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
