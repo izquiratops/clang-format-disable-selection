@@ -38,7 +38,7 @@
 	"license": "ISC",
 	"devDependencies": {
 		"@types/vscode": "^1.96.0",
-		"@vscode/vsce": "^3.2.1",
+		"@vscode/vsce": "^3.2.2",
 		"esbuild": "^0.24.2",
 		"ovsx": "^0.10.1"
 	}
