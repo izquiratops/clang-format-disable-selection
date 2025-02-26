@@ -37,7 +37,7 @@
 	"author": "Jordi Izquierdo <jordi.izquierdo.casares@gmail.com>",
 	"license": "ISC",
 	"devDependencies": {
-		"@types/vscode": "^1.96.0",
+		"@types/vscode": "^1.97.0",
 		"@vscode/vsce": "^3.2.2",
 		"esbuild": "^0.24.2",
 		"ovsx": "^0.10.1"
